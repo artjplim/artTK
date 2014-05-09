@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AboutController {
+public class MyTeamController {
 
-	@RequestMapping(value = "about")
-	public String about() {
-        return "about/about";
+	@RequestMapping(value = "myteam")
+	public String myteam() {
+        return "myteam/myteam";
     }
 }
