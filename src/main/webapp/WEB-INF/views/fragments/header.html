@@ -2,6 +2,7 @@
 <html>
 <head>
     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet" />
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
@@ -15,6 +16,11 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+				<li>
+				<a href="/timekeeping-novare-ojt/signin">
+				<span style="font-size:24px" class="glyphicon glyphicon-home col-lg-1"></span>
+				</a>
+				</li>
                 <li th:if="${#authorization.expression('isAuthenticated()')}">
                 <a href="/signin" th:href="@{/signin}">Home</a>
                 </li>
@@ -25,7 +31,7 @@
                 <a href="/createuser" th:href="@{/createuser}">Create User</a>
                 </li>
                  <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Generate Reports <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:if="${#authorization.expression('isAuthenticated()')}">Generate Reports <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="/generatereports" th:href="@{/generatereports}">Overtime Report</a></li>
                 <li><a href="/generatereports" th:href="@{/generatereports}">Late Report</a></li>
@@ -38,8 +44,12 @@
                   <a th:href="@{/generatereports}"><input type="text" id="searchUsername" name="searchUsername" placeholder="username"/>
                     <button id="searchButton" name="searchButton" onclick="testAjax()" type="button">Search</button></a>
                 </li>
-                <li class="active">
+                <li class ="dropdown">
                     <a  th:text="${#authentication.name}"  href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white"> *insert username* </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Sign in as Admin</a></li>
+                    <li><a href="#">Sign in as Manager</a></li>
+                </ul>
                 </li>
             </ul>
         </div>
